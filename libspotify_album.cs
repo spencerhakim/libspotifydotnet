@@ -31,13 +31,6 @@ namespace libspotifydotnet {
 
     public static partial class libspotify {
 
-        public enum sp_albumtype {
-            SP_ALBUMTYPE_ALBUM = 0,
-            SP_ALBUMTYPE_SINGLE = 1,
-            SP_ALBUMTYPE_COMPILATION = 2,
-            SP_ALBUMTYPE_UNKNOWN = 3
-        }
-
         [DllImport("libspotify")]
         public static extern bool sp_album_is_loaded(IntPtr albumPtr);
 
@@ -63,7 +56,7 @@ namespace libspotifydotnet {
         public static extern sp_error sp_album_add_ref(IntPtr albumPtr);
 
         [DllImport("libspotify")]
-        public static extern sp_error sp_album_release(IntPtr albumPtr);       
+        public static extern sp_error sp_album_release(IntPtr albumPtr);
 
     }
 

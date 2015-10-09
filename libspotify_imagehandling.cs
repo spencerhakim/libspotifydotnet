@@ -29,14 +29,7 @@ using System.Runtime.InteropServices;
 
 namespace libspotifydotnet {
 
-    public delegate void image_loaded_cb_delegate(IntPtr imagePtr, IntPtr userDataPtr);
-
     public static partial class libspotify {
-
-        public enum sp_imageformat {
-            SP_IMAGE_FORMAT_UNKNOWN = -1,
-            SP_IMAGE_FORMAT_JPEG = 0
-        }
 
         [DllImport("libspotify")]
         public static extern IntPtr sp_image_create(IntPtr sessionPtr, IntPtr idPtr);
@@ -45,10 +38,10 @@ namespace libspotifydotnet {
         public static extern IntPtr sp_image_create_from_link(IntPtr sessionPtr, IntPtr linkPtr);
 
         [DllImport("libspotify")]
-        public static extern sp_error sp_image_add_load_callback(IntPtr imagePtr, IntPtr callbackPtr, IntPtr userDataPtr);
+        public static extern sp_error sp_image_add_load_callback(IntPtr imagePtr, image_loaded_cb callback, IntPtr userDataPtr);
 
         [DllImport("libspotify")]
-        public static extern sp_error sp_image_remove_load_callback(IntPtr imagePtr, IntPtr callbackPtr, IntPtr userDataPtr);
+        public static extern sp_error sp_image_remove_load_callback(IntPtr imagePtr, image_loaded_cb callback, IntPtr userDataPtr);
 
         [DllImport("libspotify")]
         public static extern bool sp_image_is_loaded(IntPtr imagePtr);
@@ -70,7 +63,7 @@ namespace libspotifydotnet {
 
         [DllImport("libspotify")]
         public static extern sp_error sp_image_release(IntPtr imagePtr);
-        
+
     }
 
 }

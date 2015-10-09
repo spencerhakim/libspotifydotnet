@@ -31,19 +31,6 @@ namespace libspotifydotnet {
 
     public static partial class libspotify {
 
-        public enum sp_linktype {
-            SP_LINKTYPE_INVALID = 0,
-            SP_LINKTYPE_TRACK = 1,
-            SP_LINKTYPE_ALBUM = 2,
-            SP_LINKTYPE_ARTIST = 3,
-            SP_LINKTYPE_SEARCH = 4,
-            SP_LINKTYPE_PLAYLIST = 5,
-            SP_LINKTYPE_PROFILE = 6,
-            SP_LINKTYPE_STARRED = 7,
-            SP_LINKTYPE_LOCALTRACK = 8,
-            SP_LINKTYPE_IMAGE = 9
-        }
-
         [DllImport("libspotify")]
         public static extern IntPtr sp_link_create_from_string(IntPtr linkString);
 

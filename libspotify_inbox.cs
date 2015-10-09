@@ -29,12 +29,10 @@ using System.Runtime.InteropServices;
 
 namespace libspotifydotnet {
 
-    public delegate void inboxpost_complete_cb(IntPtr result, IntPtr userDataPtr);
-
     public static partial class libspotify {
 
         [DllImport("libspotify")]
-        public static extern IntPtr sp_inbox_post_tracks(IntPtr sessionPtr, string user, IntPtr trackPtr, int num_tracks, string message, IntPtr callback, IntPtr userdata);
+        public static extern IntPtr sp_inbox_post_tracks(IntPtr sessionPtr, [MarshalAs(UnmanagedType.LPStr)]string user, IntPtr trackPtr, int num_tracks, [MarshalAs(UnmanagedType.LPStr)]string message, inboxpost_complete_cb callback, IntPtr userdata);
 
         [DllImport("libspotify")]
         public static extern sp_error sp_inbox_error(IntPtr inboxPtr);

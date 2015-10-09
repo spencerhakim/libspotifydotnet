@@ -29,20 +29,17 @@ using System.Runtime.InteropServices;
 
 namespace libspotifydotnet {
 
-    public delegate void search_complete_cb_delegate(IntPtr searchPtr, IntPtr userDataPtr);
-
-    public enum sp_search_type {
-        SP_SEARCH_STANDARD = 0,
-        SP_SEARCH_SUGGEST = 1,
-    }
-
     public static partial class libspotify {
-        
+
         [DllImport("libspotify")]
-        public static extern IntPtr sp_search_create(IntPtr sessionPtr, IntPtr query, int track_offset, int track_count,
-                                                       int album_offset, int album_count, int artist_offset, int artist_count,
-                                                       int playlist_offset, int playlist_count, sp_search_type search_type,
-                                                       IntPtr callbackPtr, IntPtr userDataPtr);
+        public static extern IntPtr sp_search_create(
+            IntPtr sessionPtr, [MarshalAs(UnmanagedType.LPStr)]string query,
+            int track_offset, int track_count,
+            int album_offset, int album_count,
+            int artist_offset, int artist_count,
+            int playlist_offset, int playlist_count,
+            sp_search_type search_type, search_complete_cb callback, IntPtr userDataPtr);
+
         [DllImport("libspotify")]
         public static extern bool sp_search_is_loaded(IntPtr searchPtr);
 

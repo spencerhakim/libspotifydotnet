@@ -31,20 +31,9 @@ namespace libspotifydotnet {
 
     public static partial class libspotify {
 
-        public enum sp_toplisttype {
-            SP_TOPLIST_TYPE_ARTISTS = 0,
-            SP_TOPLIST_TYPE_ALBUMS = 1,
-            SP_TOPLIST_TYPE_TRACKS = 2
-        }
-
-        public enum sp_toplistregion {
-            SP_TOPLIST_REGION_EVERYWHERE = 0,
-            SP_TOPLIST_REGION_USER = 1
-        }
-
         [DllImport("libspotify")]
         public static extern IntPtr sp_toplistbrowse_create(IntPtr sessionPtr, sp_toplisttype type, int region, IntPtr usernamePtr, IntPtr browseCompleteCb, IntPtr userDataPtr);
-        
+
         [DllImport("libspotify")]
         public static extern bool sp_toplistbrowse_is_loaded(IntPtr tlb);
 

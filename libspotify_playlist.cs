@@ -31,37 +31,14 @@ namespace libspotifydotnet {
 
     public static partial class libspotify {
 
-        public struct sp_playlist_callbacks {
-            public IntPtr tracks_added;
-            public IntPtr tracks_removed;
-            public IntPtr tracks_moved;
-            public IntPtr playlist_renamed;
-            public IntPtr playlist_state_changed;
-            public IntPtr playlist_update_in_progress;
-            public IntPtr playlist_metadata_updated;
-            public IntPtr track_created_changed;
-            public IntPtr track_seen_changed;
-            public IntPtr description_changed;
-            public IntPtr image_changed;
-            public IntPtr track_message_changed;
-            public IntPtr subscribers_changed;
-        }
-
-        public struct sp_playlistcontainer_callbacks {
-            public IntPtr playlist_added;
-            public IntPtr playlist_removed;
-            public IntPtr playlist_moved;
-            public IntPtr container_loaded;
-        }
-
         [DllImport("libspotify")]
         public static extern bool sp_playlist_is_loaded(IntPtr playlistPtr);
 
         [DllImport("libspotify")]
-        public static extern sp_error sp_playlist_add_callbacks(IntPtr playlistPtr, IntPtr callbacksPtr, IntPtr userDataPtr);
+        public static extern sp_error sp_playlist_add_callbacks(IntPtr playlistPtr, ref sp_playlist_callbacks callbacks, IntPtr userDataPtr);
 
         [DllImport("libspotify")]
-        public static extern sp_error sp_playlist_remove_callbacks(IntPtr playlistPtr, IntPtr callbacksPtr, IntPtr userDataPtr);
+        public static extern sp_error sp_playlist_remove_callbacks(IntPtr playlistPtr, ref sp_playlist_callbacks callbacks, IntPtr userDataPtr);
 
         [DllImport("libspotify")]
         public static extern int sp_playlist_num_tracks(IntPtr playlistPtr);
@@ -145,13 +122,15 @@ namespace libspotifydotnet {
         public static extern sp_error sp_playlist_add_ref(IntPtr playlistPtr);
 
         [DllImport("libspotify")]
-        public static extern sp_error sp_playlist_release(IntPtr playlistPtr);     
+        public static extern sp_error sp_playlist_release(IntPtr playlistPtr);
+
+
 
         [DllImport("libspotify")]
-        public static extern int sp_playlistcontainer_add_callbacks(IntPtr playlistContainerPtr, IntPtr ptrCallbacks, IntPtr userdata);
+        public static extern int sp_playlistcontainer_add_callbacks(IntPtr playlistContainerPtr, ref sp_playlistcontainer_callbacks callbacks, IntPtr userdata);
 
         [DllImport("libspotify")]
-        public static extern int sp_playlistcontainer_remove_callbacks(IntPtr playlistContainerPtr, IntPtr ptrCallbacks, IntPtr userdata);
+        public static extern int sp_playlistcontainer_remove_callbacks(IntPtr playlistContainerPtr, ref sp_playlistcontainer_callbacks callbacks, IntPtr userdata);
 
         [DllImport("libspotify")]
         public static extern int sp_playlistcontainer_num_playlists(IntPtr playlistContainerPtr);
@@ -191,7 +170,7 @@ namespace libspotifydotnet {
 
         [DllImport("libspotify")]
         public static extern sp_error sp_playlistcontainer_release(IntPtr playlistContainerPtr);
-        
+
         [DllImport("libspotify")]
         public static extern int sp_playlistcontainer_get_unseen_tracks(IntPtr playlistContainerPtr, IntPtr playlistPtr, IntPtr tracks, int num_tracks);
 

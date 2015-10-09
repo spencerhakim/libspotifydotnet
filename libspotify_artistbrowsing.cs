@@ -28,20 +28,11 @@ using System;
 using System.Runtime.InteropServices;
 
 namespace libspotifydotnet {
-    
-    public delegate void artistbrowse_complete_cb_delegate(IntPtr result, IntPtr userDataPtr);
 
     public static partial class libspotify {
 
-        public enum sp_artistbrowse_type {
-            [Obsolete("The SP_ARTISTBROWSE_FULL mode has been deprecated and will be removed in a future release.")]
-            SP_ARTISTBROWSE_FULL = 0,
-            SP_ARTISTBROWSE_NO_TRACKS = 1,
-            SP_ARTISTBROWSE_NO_ALBUMS = 2
-        }
-
         [DllImport("libspotify")]
-        public static extern IntPtr sp_artistbrowse_create(IntPtr sessionPtr, IntPtr artistPtr, sp_artistbrowse_type type, IntPtr callbackPtr, IntPtr userDataPtr);
+        public static extern IntPtr sp_artistbrowse_create(IntPtr sessionPtr, IntPtr artistPtr, sp_artistbrowse_type type, artistbrowse_complete_cb callback, IntPtr userDataPtr);
 
         [DllImport("libspotify")]
         public static extern bool sp_artistbrowse_is_loaded(IntPtr artistBrowsePtr);

@@ -29,12 +29,10 @@ using System.Runtime.InteropServices;
 
 namespace libspotifydotnet {
 
-    public delegate void albumbrowse_complete_cb_delegate(IntPtr result, IntPtr userDataPtr);
-
     public static partial class libspotify {
-        
+
         [DllImport("libspotify")]
-        public static extern IntPtr sp_albumbrowse_create(IntPtr sessionPtr, IntPtr albumPtr, IntPtr callbackPtr, IntPtr userDataPtr);
+        public static extern IntPtr sp_albumbrowse_create(IntPtr sessionPtr, IntPtr albumPtr, albumbrowse_complete_cb callback, IntPtr userDataPtr);
 
         [DllImport("libspotify")]
         public static extern bool sp_albumbrowse_is_loaded(IntPtr albumBrowsePtr);

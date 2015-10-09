@@ -31,13 +31,6 @@ namespace libspotifydotnet {
 
     public static partial class libspotify {
 
-        public enum sp_relation_type {
-            SP_RELATION_TYPE_UNKNOWN = 0,
-            SP_RELATION_TYPE_NONE = 1,
-            SP_RELATION_TYPE_UNIDIRECTIONAL = 2,
-            SP_RELATION_TYPE_BIDIRECTIONAL = 3
-        }
-
         [DllImport("libspotify")]
         public static extern IntPtr sp_user_canonical_name(IntPtr userPtr);
 
@@ -46,7 +39,7 @@ namespace libspotifydotnet {
 
         [DllImport("libspotify")]
         [return: MarshalAs(UnmanagedType.U1)]
-        public static extern bool sp_user_is_loaded(IntPtr userPtr);        
+        public static extern bool sp_user_is_loaded(IntPtr userPtr);
 
         [DllImport("libspotify")]
         public static extern sp_error sp_user_add_ref(IntPtr userPtr);

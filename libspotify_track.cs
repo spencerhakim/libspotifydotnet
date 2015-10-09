@@ -33,7 +33,7 @@ namespace libspotifydotnet {
 
         [DllImport("libspotify")]
         public static extern bool sp_track_is_loaded(IntPtr trackPtr);
-       
+
         [DllImport("libspotify")]
         public static extern sp_error sp_track_error(IntPtr trackPtr);
 
@@ -80,13 +80,13 @@ namespace libspotifydotnet {
         public static extern int sp_track_index(IntPtr trackPtr);
 
         [DllImport("libspotify")]
-        public static extern IntPtr sp_localtrack_create(string artist, string title, string album, int length);
+        public static extern IntPtr sp_localtrack_create([MarshalAs(UnmanagedType.LPStr)]string artist, [MarshalAs(UnmanagedType.LPStr)]string title, [MarshalAs(UnmanagedType.LPStr)]string album, int length);
 
         [DllImport("libspotify")]
         public static extern sp_error sp_track_add_ref(IntPtr trackPtr);
 
         [DllImport("libspotify")]
-        public static extern sp_error sp_track_release(IntPtr trackPtr);            
+        public static extern sp_error sp_track_release(IntPtr trackPtr);
 
     }
 
